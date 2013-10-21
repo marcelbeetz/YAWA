@@ -25,6 +25,8 @@
 		7D93AC7618112CD40086793B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D93AC5118112CD30086793B /* CoreData.framework */; };
 		7D93AC7E18112CD40086793B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D93AC7C18112CD40086793B /* InfoPlist.strings */; };
 		7D93AC8018112CD40086793B /* YAWATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D93AC7F18112CD40086793B /* YAWATests.m */; };
+		7D976F22181512FE007B6977 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D976F21181512FE007B6977 /* AsyncImageView.m */; };
+		7D976F2618152A01007B6977 /* defaultimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D976F2518152A01007B6977 /* defaultimage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +54,7 @@
 		7D93AC6018112CD30086793B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D93AC6318112CD30086793B /* YAWA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YAWA.xcdatamodel; sourceTree = "<group>"; };
 		7D93AC6518112CD30086793B /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		7D93AC6618112CD30086793B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		7D93AC6618112CD30086793B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		7D93AC6818112CD40086793B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		7D93AC6918112CD40086793B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		7D93AC6B18112CD40086793B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -61,6 +63,9 @@
 		7D93AC7B18112CD40086793B /* YAWATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YAWATests-Info.plist"; sourceTree = "<group>"; };
 		7D93AC7D18112CD40086793B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7D93AC7F18112CD40086793B /* YAWATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YAWATests.m; sourceTree = "<group>"; };
+		7D976F20181512FE007B6977 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		7D976F21181512FE007B6977 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		7D976F2518152A01007B6977 /* defaultimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultimage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +135,8 @@
 				7D93AC6618112CD30086793B /* MasterViewController.m */,
 				7D93AC6818112CD40086793B /* DetailViewController.h */,
 				7D93AC6918112CD40086793B /* DetailViewController.m */,
+				7D976F20181512FE007B6977 /* AsyncImageView.h */,
+				7D976F21181512FE007B6977 /* AsyncImageView.m */,
 				7D93AC6B18112CD40086793B /* Images.xcassets */,
 				7D93AC6218112CD30086793B /* YAWA.xcdatamodeld */,
 				7D93AC5418112CD30086793B /* Supporting Files */,
@@ -140,6 +147,7 @@
 		7D93AC5418112CD30086793B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7D976F2518152A01007B6977 /* defaultimage.png */,
 				7D93AC5518112CD30086793B /* YAWA-Info.plist */,
 				7D93AC5618112CD30086793B /* InfoPlist.strings */,
 				7D93AC5918112CD30086793B /* main.m */,
@@ -245,6 +253,7 @@
 				7D93AC6C18112CD40086793B /* Images.xcassets in Resources */,
 				7D93AC5818112CD30086793B /* InfoPlist.strings in Resources */,
 				7D93AC6118112CD30086793B /* Main.storyboard in Resources */,
+				7D976F2618152A01007B6977 /* defaultimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D93AC6A18112CD40086793B /* DetailViewController.m in Sources */,
+				7D976F22181512FE007B6977 /* AsyncImageView.m in Sources */,
 				7D93AC6718112CD30086793B /* MasterViewController.m in Sources */,
 				7D93AC6418112CD30086793B /* YAWA.xcdatamodeld in Sources */,
 				7D93AC5E18112CD30086793B /* AppDelegate.m in Sources */,
@@ -397,6 +407,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAWA/YAWA-Prefix.pch";
 				INFOPLIST_FILE = "YAWA/YAWA-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -410,6 +421,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAWA/YAWA-Prefix.pch";
 				INFOPLIST_FILE = "YAWA/YAWA-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -476,6 +488,7 @@
 				7D93AC8518112CD40086793B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D93AC8618112CD40086793B /* Build configuration list for PBXNativeTarget "YAWATests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +497,7 @@
 				7D93AC8818112CD40086793B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

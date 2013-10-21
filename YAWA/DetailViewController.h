@@ -10,7 +10,22 @@
 
 @interface DetailViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *selectedCityInfo;
+@property (strong, nonatomic) NSDictionary *selectedCityWeatherInfo;
+@property (strong, nonatomic) NSString *selectedDay;
+@property (strong, nonatomic) IBOutlet UIImageView *selectedDayImage;
+
+// View Labels.
+@property (strong, nonatomic) IBOutlet UILabel *lblCity;
+@property (strong, nonatomic) IBOutlet UILabel *lblDay;
+@property (strong, nonatomic) IBOutlet UILabel *lblMorningTemp;
+@property (strong, nonatomic) IBOutlet UILabel *lblDayTemp;
+@property (strong, nonatomic) IBOutlet UILabel *lblEveningTemp;
+@property (strong, nonatomic) IBOutlet UILabel *lblNightTemp;
+@property (strong, nonatomic) IBOutlet UILabel *lblMinTemp;
+@property (strong, nonatomic) IBOutlet UILabel *lblMaxTemp;
+@property (strong, nonatomic) IBOutlet UILabel *lblDescription;
+
 @property (strong, nonatomic) id detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
