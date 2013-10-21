@@ -302,7 +302,13 @@
  * Returns todays date based on the index path passed in, e.g. Tuesday at row 1,(index 0) 0 * 86400 = 0 = Tuesday.
  */
 -(NSString*) getDayFromIndex:(int) index {
-    return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:index*86400]];
+    if(index == 0) {
+        return @"Today";
+    } else if(index == 1) {
+        return @"Tomorrow";
+    } else {
+        return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:index*86400]];
+    }
 }
 
 @end
