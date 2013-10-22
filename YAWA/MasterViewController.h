@@ -10,15 +10,15 @@
 
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>{
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
     NSDictionary *cityInfo;
     NSArray *weatherInfo;
     NSDateFormatter *dateFormatter;
+    UITapGestureRecognizer *tgr;
 }
 
 // Self Made.
-@property (strong, nonatomic) IBOutlet UITextField *txtBxSearchCity;
-- (IBAction)btnSearchCity:(id)sender;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBarCityName;
 @property (nonatomic, retain) NSArray *imageURLs;
 
 

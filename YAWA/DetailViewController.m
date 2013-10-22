@@ -9,10 +9,6 @@
 #import "DetailViewController.h"
 #import "AsyncImageView.h"
 
-@interface DetailViewController ()
-- (void)configureView;
-@end
-
 @implementation DetailViewController
 @synthesize selectedCityInfo, selectedCityWeatherInfo, selectedDay, selectedDayImage;
 @synthesize lblDay, lblMinTemp, lblMaxTemp, lblDescription;
@@ -25,13 +21,8 @@
         _detailItem = newDetailItem;
         
         // Update the view.
-        [self configureView];
+        //[self configureView];
     }
-}
-
-- (void)configureView
-{
-    // Update the user interface for the detail item.
 }
 
 - (void)viewDidLoad
@@ -39,15 +30,6 @@
     [super viewDidLoad];
     
     [self setControls];
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void) setControls {

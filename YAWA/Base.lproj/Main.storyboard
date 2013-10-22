@@ -31,24 +31,19 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a city to search" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wT6-py-Mw4">
-                                    <rect key="frame" x="8" y="7" width="269" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <accessibility key="accessibilityConfiguration">
-                                        <accessibilityTraits key="traits" none="YES" searchField="YES"/>
-                                    </accessibility>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Enter city to search" translatesAutoresizingMaskIntoConstraints="NO" id="7ZX-uT-JDH">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnb-2w-lkI">
-                                    <rect key="frame" x="283" y="7" width="30" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" image="SearchImage"/>
+                                    <scopeButtonTitles>
+                                        <string>Title</string>
+                                        <string>Title</string>
+                                    </scopeButtonTitles>
                                     <connections>
-                                        <action selector="btnSearchCity:" destination="pGg-6v-bdr" eventType="touchUpInside" id="Kyn-VP-gwb"/>
+                                        <outlet property="delegate" destination="pGg-6v-bdr" id="3XV-cZ-58A"/>
                                     </connections>
-                                </button>
+                                </searchBar>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
@@ -56,7 +51,7 @@
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="zhY-9A-fI0" detailTextLabel="JNM-N3-Ru2" style="IBUITableViewCellStyleSubtitle" id="PrD-Rx-9XQ">
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PrD-Rx-9XQ">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PrD-Rx-9XQ" id="JRz-gE-Gfi">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -89,10 +84,27 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Yet Another Weather App" id="tQt-TN-PWz"/>
                     <connections>
-                        <outlet property="txtBxSearchCity" destination="wT6-py-Mw4" id="Rkm-ZG-X2g"/>
+                        <outlet property="searchBarCityName" destination="7ZX-uT-JDH" id="eBn-yv-SJh"/>
+                        <outlet property="searchDisplayController" destination="bL1-gu-MK6" id="pfH-KR-jGq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="nCo-5x-Ih8">
+                    <connections>
+                        <outlet property="delegate" destination="pGg-6v-bdr" id="ILB-we-5ek"/>
+                        <outlet property="searchContentsController" destination="pGg-6v-bdr" id="tbV-fg-ckl"/>
+                        <outlet property="searchResultsDataSource" destination="pGg-6v-bdr" id="7HL-qd-Jkc"/>
+                        <outlet property="searchResultsDelegate" destination="pGg-6v-bdr" id="D9M-oT-5Mi"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="bL1-gu-MK6">
+                    <connections>
+                        <outlet property="delegate" destination="pGg-6v-bdr" id="ZMk-Ip-Okj"/>
+                        <outlet property="searchContentsController" destination="pGg-6v-bdr" id="3zA-NG-leg"/>
+                        <outlet property="searchResultsDataSource" destination="pGg-6v-bdr" id="FJN-tN-UZE"/>
+                        <outlet property="searchResultsDelegate" destination="pGg-6v-bdr" id="mX9-o7-0hp"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
@@ -166,6 +178,12 @@
                                 <rect key="frame" x="7" y="82" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dnb-2w-lkI">
+                                <rect key="frame" x="229" y="383" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="SearchImage"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
