@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DaysWeather.h"
 
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *selectedCityInfo;
-@property (strong, nonatomic) NSDictionary *selectedCityWeatherInfo;
-@property (strong, nonatomic) NSString *selectedDay;
+@property (strong, nonatomic) NSString *cityName;
+@property (strong, nonatomic) NSString *countryName;
+@property (strong, nonatomic) DaysWeather *currentDay;
 @property (strong, nonatomic) IBOutlet UIImageView *selectedDayImage;
 
 // View Labels.

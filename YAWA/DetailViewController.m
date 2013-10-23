@@ -10,7 +10,7 @@
 #import "AsyncImageView.h"
 
 @implementation DetailViewController
-@synthesize selectedCityInfo, selectedCityWeatherInfo, selectedDay, selectedDayImage;
+@synthesize cityName, countryName, currentDay, selectedDayImage;
 @synthesize lblDay, lblMinTemp, lblMaxTemp, lblDescription;
 @synthesize lblMorningTemp, lblDayTemp, lblEveningTemp, lblNightTemp;
 #pragma mark - Managing the detail item
@@ -34,24 +34,24 @@
 
 -(void) setControls {
     // Break down JSON data.
-    NSDictionary *temps = [selectedCityWeatherInfo objectForKey:@"temp"];
-    NSArray *weatherArr = [selectedCityWeatherInfo objectForKey:@"weather"];
-    NSDictionary *weather = [weatherArr objectAtIndex:0];
+    //NSDictionary *temps = [selectedCityWeatherInfo objectForKey:@"temp"];
+    //NSArray *weatherArr = [selectedCityWeatherInfo objectForKey:@"weather"];
+    //NSDictionary *weather = [weatherArr objectAtIndex:0];
     
-    self.title = [NSString stringWithFormat:@"%@, %@", [selectedCityInfo objectForKey:@"name"], [selectedCityInfo objectForKey:@"country"]];
+    self.title = [NSString stringWithFormat:@"%@, %@", cityName, countryName];
     
     // Uses AsyncImageView to download images asynchronously.
-    NSString *imagesurlloc = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", [weather objectForKey:@"icon"]];
+    NSString *imagesurlloc = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", currentDay.icon];
     [selectedDayImage setImage:[UIImage imageNamed:@"defaultimage.png"]];
     [selectedDayImage setImageURL:[NSURL URLWithString:imagesurlloc]];
     
-    lblDay.text = [NSString stringWithFormat:@"%@", selectedDay];
-    lblMinTemp.text = [NSString stringWithFormat:@"Low: %.0lf%@", [[temps objectForKey:@"min"] floatValue],  @"\u00B0"];
-    lblMaxTemp.text = [NSString stringWithFormat:@"High: %.0lf%@", [[temps objectForKey:@"max"] floatValue],  @"\u00B0"];
-    lblDescription.text = [NSString stringWithFormat:@"Description:\n%@", [weather objectForKey:@"description"]];
-    lblMorningTemp.text = [NSString stringWithFormat:@"Morning: %.0lf%@", [[temps objectForKey:@"morn"] floatValue],  @"\u00B0"];
-    lblDayTemp.text = [NSString stringWithFormat:@"Day: %.0lf%@", [[temps objectForKey:@"day"] floatValue],  @"\u00B0"];
-    lblEveningTemp.text = [NSString stringWithFormat:@"Evening: %.0lf%@", [[temps objectForKey:@"eve"] floatValue],  @"\u00B0"];
-    lblNightTemp.text = [NSString stringWithFormat:@"Night: %.0lf%@", [[temps objectForKey:@"night"] floatValue],  @"\u00B0"];
+    lblDay.text = [NSString stringWithFormat:@"%@", currentDay.day];
+    lblMinTemp.text = [NSString stringWithFormat:@"Low: %.0lf%@", currentDay.minTemp,  @"\u00B0"];
+    lblMaxTemp.text = [NSString stringWithFormat:@"High: %.0lf%@", currentDay.maxTemp,  @"\u00B0"];
+    lblDescription.text = [NSString stringWithFormat:@"Description:\n%@", currentDay.description];
+    lblMorningTemp.text = [NSString stringWithFormat:@"Morning: %.0lf%@", currentDay.morningTemp,  @"\u00B0"];
+    lblDayTemp.text = [NSString stringWithFormat:@"Day: %.0lf%@", currentDay.dayTemp,  @"\u00B0"];
+    lblEveningTemp.text = [NSString stringWithFormat:@"Evening: %.0lf%@", currentDay.eveningTemp,  @"\u00B0"];
+    lblNightTemp.text = [NSString stringWithFormat:@"Night: %.0lf%@", currentDay.nightTemp,  @"\u00B0"];
 }
 @end

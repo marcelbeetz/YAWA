@@ -27,6 +27,7 @@
 		7D93AC8018112CD40086793B /* YAWATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D93AC7F18112CD40086793B /* YAWATests.m */; };
 		7D976F22181512FE007B6977 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D976F21181512FE007B6977 /* AsyncImageView.m */; };
 		7D976F2618152A01007B6977 /* defaultimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D976F2518152A01007B6977 /* defaultimage.png */; };
+		7DEC8E201817D26E00A31EF2 /* DaysWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEC8E1F1817D26E00A31EF2 /* DaysWeather.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		7D976F20181512FE007B6977 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		7D976F21181512FE007B6977 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		7D976F2518152A01007B6977 /* defaultimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultimage.png; sourceTree = "<group>"; };
+		7DEC8E1E1817D26E00A31EF2 /* DaysWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaysWeather.h; sourceTree = "<group>"; };
+		7DEC8E1F1817D26E00A31EF2 /* DaysWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaysWeather.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				7D93AC6918112CD40086793B /* DetailViewController.m */,
 				7D976F20181512FE007B6977 /* AsyncImageView.h */,
 				7D976F21181512FE007B6977 /* AsyncImageView.m */,
+				7DEC8E1E1817D26E00A31EF2 /* DaysWeather.h */,
+				7DEC8E1F1817D26E00A31EF2 /* DaysWeather.m */,
 				7D93AC6B18112CD40086793B /* Images.xcassets */,
 				7D93AC6218112CD30086793B /* YAWA.xcdatamodeld */,
 				7D93AC5418112CD30086793B /* Supporting Files */,
@@ -275,6 +280,7 @@
 				7D93AC6A18112CD40086793B /* DetailViewController.m in Sources */,
 				7D976F22181512FE007B6977 /* AsyncImageView.m in Sources */,
 				7D93AC6718112CD30086793B /* MasterViewController.m in Sources */,
+				7DEC8E201817D26E00A31EF2 /* DaysWeather.m in Sources */,
 				7D93AC6418112CD30086793B /* YAWA.xcdatamodeld in Sources */,
 				7D93AC5E18112CD30086793B /* AppDelegate.m in Sources */,
 				7D93AC5A18112CD30086793B /* main.m in Sources */,

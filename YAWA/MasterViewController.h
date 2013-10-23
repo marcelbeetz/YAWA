@@ -11,8 +11,9 @@
 #import <CoreData/CoreData.h>
 
 @interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UISearchDisplayDelegate>{
-    NSDictionary *cityInfo;
-    NSArray *weatherInfo;
+    NSString *cityName;
+    NSString *countryName;
+    NSMutableArray *daysWeather;
     NSDateFormatter *dateFormatter;
     UITapGestureRecognizer *tgr;
 }

@@ -14,6 +14,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "AsyncImageView.h"
+#import "DaysWeather.h"
 
 @implementation MasterViewController
 @synthesize searchBarCityName;
@@ -26,8 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    cityInfo = [[NSDictionary alloc] init];
-    weatherInfo = [[NSArray alloc] init];
+    
+    daysWeather = [[NSMutableArray alloc] init];
     
     // Setup dateFormatter.
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -57,7 +58,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Not the best way to make rows, but will make rows based on how many array sets of data there are.
-    return weatherInfo.count;
+    return daysWeather.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,20 +72,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    if(weatherInfo.count > 0) { // Only do the following if the array has data.
-        NSDictionary *aDay = [weatherInfo objectAtIndex:indexPath.row];
-        NSDictionary *temps = [aDay objectForKey:@"temp"];
-        float stringFloat = [[temps objectForKey:@"day"] floatValue];
-        NSString *currentTemp = [NSString stringWithFormat:@"%.0lf%@", stringFloat, @"\u00B0"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %-9s", currentTemp,
-                                [[self getDayFromIndex:indexPath.row] UTF8String]];  // Gets day of week by multiplying the row 0-6 by the seconds in a day.
-        
-        NSArray *weather = [aDay objectForKey:@"weather"];
-        NSDictionary *description = [weather objectAtIndex:0];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[description objectForKey:@"description"]];
+    if([daysWeather count] > 0) { // Only do the following if the array has data.
+        DaysWeather *currentDay = [daysWeather objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%.0lf%@ %-9s", currentDay.dayTemp, @"\u00B0", [currentDay.day UTF8String]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", currentDay.description];
         
         // Uses AsyncImageView to download images asynchronously.
-        NSString *imagesurlloc = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", [description objectForKey:@"icon"]];
+        NSString *imagesurlloc = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", currentDay.icon];
         [cell.imageView setImage:[UIImage imageNamed:@"defaultimage.png"]];
         [cell.imageView setImageURL:[NSURL URLWithString:imagesurlloc]];
     }
@@ -108,9 +102,9 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     
     // Pass info into properties stored in DVC.
-    DVC.selectedCityInfo = cityInfo;
-    DVC.selectedCityWeatherInfo = [weatherInfo objectAtIndex:path.row];
-    DVC.selectedDay = [self getDayFromIndex:path.row];
+    DVC.cityName = cityName;
+    DVC.countryName = countryName;
+    DVC.currentDay = [daysWeather objectAtIndex:path.row];
 }
 
 /*
@@ -124,6 +118,9 @@
     // Hide keyboard on search.
     [self.tableView removeGestureRecognizer:tgr];
     [self viewTapped:tgr];
+    
+    // Flush the daysWeather Array of previous city weather info.
+    [daysWeather removeAllObjects];
     
     // Set JSON Api URL. Strip spaces from URL because URL's cannot contain spaces.
     NSString *mayContainSpaces = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?q=%@&mode=json&units=metric&cnt=7", searchBarCityName.text];
@@ -144,21 +141,44 @@
                                               otherButtonTitles:nil];
         [alert show];
     } else {
+        NSDictionary *cityInfo = [[NSDictionary alloc] init];
+        NSArray *weekOfWeather = [[NSArray alloc] init];
         cityInfo = [json objectForKey:@"city"];
-        weatherInfo = [json objectForKey:@"list"];
+        weekOfWeather = [json objectForKey:@"list"];
         
-        self.navigationItem.title = [NSString stringWithFormat:@"%@, %@",
-                                     [cityInfo objectForKey:@"name"], [cityInfo objectForKey:@"country"]]; // Set title to city name.
+        cityName = [NSString stringWithFormat:@"%@", [cityInfo objectForKey:@"name"]];
+        countryName = [NSString stringWithFormat:@"%@", [cityInfo objectForKey:@"country"]];
+        
+        // Init a DaysWeather object for each day.
+        for(int i = 0; i < weekOfWeather.count; i++) {
+            NSDictionary *eachDaysWeather = [weekOfWeather objectAtIndex:i];
+            NSArray *weather = [eachDaysWeather objectForKey:@"weather"];
+            NSDictionary *temps = [eachDaysWeather objectForKey:@"temp"];
+            
+            DaysWeather *currentDay = [[DaysWeather alloc] init];
+            currentDay.day = [self getDayFromIndex:i];
+            currentDay.description = [[weather objectAtIndex:0] objectForKey:@"description"];
+            currentDay.icon = [[weather objectAtIndex:0] objectForKey:@"icon"];
+            currentDay.morningTemp = [[temps objectForKey:@"morn"] floatValue];
+            currentDay.dayTemp = [[temps objectForKey:@"day"] floatValue];
+            currentDay.eveningTemp = [[temps objectForKey:@"eve"] floatValue];
+            currentDay.nightTemp = [[temps objectForKey:@"night"] floatValue];
+            currentDay.minTemp = [[temps objectForKey:@"min"] floatValue];
+            currentDay.maxTemp = [[temps objectForKey:@"max"] floatValue];
+            
+            [daysWeather addObject:currentDay];
+        }
+        
+        self.navigationItem.title = [NSString stringWithFormat:@"%@, %@", cityName, countryName]; // Set title to city name.
         
         [self.tableView reloadData];    // Reload tableview to display entered city weather info.
-        
     }
 }
 
 /*
  * Returns todays date based on the index path passed in, e.g. Tuesday at row 1,(index 0) 0 * 86400 = 0 = Tuesday.
  */
--(NSString*) getDayFromIndex:(int) index
+-(NSString *) getDayFromIndex:(int) index
 {
     if(index == 0) {
         return @"Today";
